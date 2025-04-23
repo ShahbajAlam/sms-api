@@ -4,9 +4,10 @@ let isConnected = false;
 
 export async function connectDB() {
     if (isConnected) return;
+    const MONGODB_URI = process.env.MONGO_URI;
 
     try {
-        await mongoose.connect(process.env.MONGODB_URI, {
+        await mongoose.connect(MONGODB_URI, {
             dbName: "test",
         });
         isConnected = true;
