@@ -5,7 +5,6 @@ export async function GET() {
     try {
         await connectDB();
         const posts = await Post.find({});
-        console.log(posts);
         return Response.json(posts);
     } catch (err) {
         return Response.json(
@@ -28,7 +27,7 @@ export async function POST(req) {
         }
 
         await connectDB();
-        const newPost = new Post({
+        const newPost = await Post.create({
             title,
             content,
             scheduledFor: new Date(scheduledFor).toISOString(),
@@ -36,14 +35,13 @@ export async function POST(req) {
             image,
         });
 
-        await newPost.save();
         return Response.json(
             { message: "Post created successfully", post: newPost },
             { status: 201 }
         );
     } catch (err) {
         return Response.json(
-            { error: "Failed to create post" },
+            { error: "Something went wrong" },
             { status: 500 }
         );
     }
