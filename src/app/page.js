@@ -1,5 +1,5 @@
 export default function HomePage() {
-    const baseURL = "https://social-media-scheduler-bytexl.vercel.app/";
+    const baseURL = "https://social-media-scheduler-bytexl.vercel.app";
 
     return (
         <main className="api-docs-container">
