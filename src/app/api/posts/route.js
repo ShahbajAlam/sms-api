@@ -1,13 +1,14 @@
 import { connectDB } from "@/lib/dbConnect";
 import Post from "@/models/Post";
+import { NextResponse } from "next/server";
 
 export async function GET() {
     try {
         await connectDB();
         const posts = await Post.find({});
-        return Response.json(posts);
+        return NextResponse.json(posts);
     } catch (err) {
-        return Response.json(
+        return NextResponse.json(
             { error: "Failed to fetch posts" },
             { status: 500 }
         );
@@ -35,12 +36,12 @@ export async function POST(req) {
             image,
         });
 
-        return Response.json(
+        return NextResponse.json(
             { message: "Post created successfully", post: newPost },
             { status: 201 }
         );
     } catch (err) {
-        return Response.json(
+        return NextResponse.json(
             { error: "Something went wrong" },
             { status: 500 }
         );
