@@ -4,7 +4,6 @@ import Post from "@/models/Post";
 export async function GET() {
     try {
         await connectDB();
-        return Response.json({ msg: "working" });
         const posts = await Post.find({});
         return Response.json(posts);
     } catch (err) {
